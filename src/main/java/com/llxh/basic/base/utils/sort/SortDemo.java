@@ -8,7 +8,7 @@ public class SortDemo {
         int [] a = {45,45,3,56,6,32,15};
 //        insertSort(a);
 //        Arrays.stream(a).forEach(s -> System.out.print(s+","));
-        sheelSort(a);
+        shellSort(a);
         System.out.println();
         Arrays.stream(a).forEach(s-> System.out.print(s+","));
     }
@@ -36,7 +36,7 @@ public class SortDemo {
             a[j+1] = insertNum;
         }
     }
-    private static void sheelSort(int [] a){
+    private static void shellSort(int [] a){
         int len = a.length;
         while (len!=0){
             len = len/2;

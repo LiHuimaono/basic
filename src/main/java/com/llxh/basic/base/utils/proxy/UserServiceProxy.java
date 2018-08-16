@@ -1,8 +1,8 @@
-package com.llxh.basic.base.utils;
+package com.llxh.basic.base.utils.proxy;
 
 public class UserServiceProxy implements UserService {
     private UserServiceImpl userService;
-    public UserServiceProxy(UserServiceImpl userService){
+    UserServiceProxy(UserServiceImpl userService){
         this.userService = userService;
     }
     @Override

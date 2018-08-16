@@ -1,4 +1,6 @@
-package com.llxh.basic.base.utils;
+package com.llxh.basic.base.utils.proxy;
+
+import com.llxh.basic.base.utils.proxy.UserService;
 
 public class UserServiceImpl implements UserService {
     public void sayHello(String name){

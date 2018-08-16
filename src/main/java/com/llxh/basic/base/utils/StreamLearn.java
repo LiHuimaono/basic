@@ -33,9 +33,7 @@ public class StreamLearn {
         List<User> users = new LinkedList<>();
         user.setUserAge(80);
         users.add(user);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        new Thread(()-> {
                 for (int i=0;i<100000;i++){
                     User user1 = new User();
                     user1.setUserAge(79);
@@ -43,12 +41,9 @@ public class StreamLearn {
                 }
                 try {
                     cyclicBarrier.await();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (BrokenBarrierException e) {
+                } catch (InterruptedException|BrokenBarrierException e) {
                     e.printStackTrace();
                 }
-            }
         }).start();
         new Thread(()->{
             for (int i=0;i<100000;i++){
@@ -58,9 +53,7 @@ public class StreamLearn {
             }
             try {
                 cyclicBarrier.await();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (BrokenBarrierException e) {
+            } catch (InterruptedException | BrokenBarrierException e) {
                 e.printStackTrace();
             }
         }).start();

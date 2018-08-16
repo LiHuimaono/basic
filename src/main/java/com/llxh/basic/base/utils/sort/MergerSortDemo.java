@@ -18,16 +18,15 @@ public class MergerSortDemo {
         Arrays.stream(nums).forEach(s-> System.out.print(s+","));
 
     }
-    public static int[] sort(int []nums,int low, int high){
+    private static void sort(int []nums,int low, int high){
         int mid = (low+high)/2;
         if (low<high){
             sort(nums,low,mid);
             sort(nums,mid+1,high);
             merger(nums,low,mid,high);
         }
-        return nums;
     }
-    public static void merger(int[] nums,int low,int mid,int high){
+    private static void merger(int[] nums,int low,int mid,int high){
         int [] temp = new int[high-low+1];
         int i =low;
         int j = mid+1;
