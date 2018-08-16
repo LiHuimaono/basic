@@ -1,11 +1,9 @@
-package com.llxh.basic.base.utils.proxy;
-
-import com.llxh.basic.base.utils.proxy.UserService;
+package com.llxh.basic.base.utils.proxy.staticproxy;
 
 public class UserServiceImpl implements UserService {
     public void sayHello(String name){
         try {
-            Thread.sleep(1500);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
