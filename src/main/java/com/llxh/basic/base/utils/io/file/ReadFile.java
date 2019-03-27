@@ -1,5 +1,7 @@
 package com.llxh.basic.base.utils.io.file;
 
+import ch.qos.logback.core.joran.conditional.ElseAction;
+
 import java.io.*;
 import java.util.*;
 
@@ -70,50 +72,29 @@ public class ReadFile {
             Map<String,String> result = new LinkedHashMap<>();
             for (int j=0;j<titles.size();j++){
                 byte[] bytes2 = titles.get(j).getBytes("GBK");
-                int start =indexOfBytes(bytes,bytes2);
-                int end;
+                int start =ArrayIndexOfUtils.BytesIndexOf(bytes,bytes2);
+                int len;
                 if (j+1 == titles.size()){
-                    end = 7;
+                    len = 7;
                 }else {
                     byte[] bytes3 =titles.get(j+1).getBytes("GBK");
-                    end = indexOfBytes(bytes,bytes3)-start;
+                    len = ArrayIndexOfUtils.BytesIndexOf(bytes,bytes3)-start;
                 }
-                String dataValue = new String(bytes1,start,end,"GBK").trim();
-                result.put(titles.get(j),dataValue);
+                if (start+len>bytes1.length){
+                    if (bytes1.length > start) {
+                        len = bytes1.length-start;
+                        String dataValue = new String(bytes1, start, len, "GBK").trim();
+                        result.put(titles.get(j), dataValue);
+                    }else result.put(titles.get(j),"");
+                }else {
+                    String dataValue = new String(bytes1, start, len, "GBK").trim();
+                    result.put(titles.get(j), dataValue);
+                }
             }
             resultList.add(result);
         }
         resultList.forEach(stringStringMap -> {
             System.out.println(stringStringMap.toString());
         });
-    }
-    private int indexOfBytes(byte[] bytes1,byte[] bytes2){
-        boolean flag = true;
-        int index = -1;
-        int len = bytes2.length;
-        int k = 0;
-        for (int i=0;i<bytes1.length;i++){
-            for (int j=k;j<bytes2.length;j++){
-                if (bytes1[i] == bytes2[j]){
-                    len--;
-                    k++;
-                    if (flag){
-                        index = i;
-                        flag = false;
-                    }
-                    break;
-                }else {
-                    k=0;
-                    len = bytes2.length;
-                    flag = true;
-                    index = -1;
-                    break;
-                }
-            }
-            if (len == 1){
-                break;
-            }
-        }
-        return index;
     }
 }
