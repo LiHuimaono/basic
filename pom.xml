@@ -6,10 +6,7 @@
 	<groupId>com.llxh</groupId>
 	<artifactId>basic</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<modules>
-		<module>nettylearn</module>
-	</modules>
-	<packaging>pom</packaging>
+	<packaging>jar</packaging>
 
 	<name>basic</name>
 	<description>Demo project for Spring Boot</description>
